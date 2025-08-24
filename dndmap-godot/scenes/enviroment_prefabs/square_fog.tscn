@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm6frommtjvrr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qy72h"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_qy72h"]
+noise = SubResource("FastNoiseLite_qy72h")
+
+[sub_resource type="FogMaterial" id="FogMaterial_fy0p5"]
+emission = Color(0.314316, 0.314316, 0.314316, 1)
+height_falloff = 1e-05
+density_texture = SubResource("NoiseTexture3D_qy72h")
+
+[node name="FogVolume" type="FogVolume"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37, 0)
+size = Vector3(128, 75, 128)
+material = SubResource("FogMaterial_fy0p5")

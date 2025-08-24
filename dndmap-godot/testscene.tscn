@@ -1,0 +1,349 @@
+[gd_scene load_steps=34 format=3 uid="uid://b5b6w77hgfs1r"]
+
+[ext_resource type="Script" uid="uid://dr6ahwxcixptp" path="res://scripts/grid.gd" id="1_scc5w"]
+[ext_resource type="Script" uid="uid://bh7hqt12wv1lm" path="res://scripts/resources/grid_data.gd" id="2_b56k5"]
+[ext_resource type="Script" uid="uid://by8uh1d51dfw1" path="res://scripts/resources/tile_resource.gd" id="3_scc5w"]
+[ext_resource type="Script" uid="uid://ms1wf8c5iq8h" path="res://scripts/camera_pivot.gd" id="4_asog6"]
+[ext_resource type="Script" uid="uid://blncfihph1wvg" path="res://time_system.gd" id="4_hkdkl"]
+[ext_resource type="Script" uid="uid://5vot2s8ruwq3" path="res://scripts/resources/date_time.gd" id="5_egudy"]
+[ext_resource type="Script" uid="uid://ilgy88gj7qcs" path="res://scripts/day_cycle.gd" id="5_scc5w"]
+[ext_resource type="Texture2D" uid="uid://dmpfl6bpxvgr8" path="res://icon.svg" id="6_b56k5"]
+[ext_resource type="Script" uid="uid://cwjk1w5xh8i33" path="res://scripts/party.gd" id="7_scc5w"]
+[ext_resource type="Script" uid="uid://bm73rxjfk5nmm" path="res://scripts/resources/character_data.gd" id="8_j8njj"]
+[ext_resource type="Script" uid="uid://b3uam1rlkdixt" path="res://scripts/resources/party_data.gd" id="9_hkdkl"]
+
+[sub_resource type="Resource" id="Resource_fy0p5"]
+script = ExtResource("2_b56k5")
+x_range_lower = -25
+x_range_upper = 0
+y_range_lower = 0
+y_range_upper = 25
+tiles = Dictionary[Vector2i, ExtResource("3_scc5w")]({})
+default_terrain = ""
+metadata/_custom_type_script = "uid://bh7hqt12wv1lm"
+
+[sub_resource type="Resource" id="Resource_ldgie"]
+script = ExtResource("5_egudy")
+seconds = 0
+minutes = 0
+hours = 0
+days = 0
+metadata/_custom_type_script = "uid://5vot2s8ruwq3"
+
+[sub_resource type="Animation" id="Animation_b56k5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.385, 0.454, 0.55, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.6463, 0.6558, 0.6708, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_cover_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_mawog"]
+resource_name = "day_night_cycle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(1.5708, 1.5708, 0), Vector3(3.14159, 1.5708, 0), Vector3(4.71239, 1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 3, 7, 7.5, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.385, 0.454, 0.55, 1), Color(0.385, 0.454, 0.55, 1), Color(0.909804, 0.47451, 0.223529, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.909804, 0.47451, 0.223529, 1), Color(0.385, 0.454, 0.55, 1), Color(0.385, 0.454, 0.55, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.6463, 0.6558, 0.6708, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_cover_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.6, 3.5, 6.5, 7.4, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.5, 2.6, 7.4, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../WorldEnvironment:environment:sky:sky_material:sky_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 7.5, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 2.0, 2.0, 1.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scc5w"]
+_data = {
+&"RESET": SubResource("Animation_b56k5"),
+&"day_night_cycle": SubResource("Animation_mawog")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_asog6"]
+sky_cover = ExtResource("6_b56k5")
+sky_cover_modulate = Color(1, 1, 1, 0)
+
+[sub_resource type="Sky" id="Sky_mawog"]
+sky_material = SubResource("ProceduralSkyMaterial_asog6")
+
+[sub_resource type="Environment" id="Environment_b56k5"]
+background_mode = 2
+sky = SubResource("Sky_mawog")
+ambient_light_sky_contribution = 0.5
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_length = 2048.0
+volumetric_fog_temporal_reprojection_enabled = false
+
+[sub_resource type="SystemFont" id="SystemFont_fy0p5"]
+font_names = PackedStringArray("OpenDyslexic", "Ubuntu", "Sans-Serif")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8njj"]
+emission_enabled = true
+emission = Color(0.529879, 0.982205, 0, 1)
+emission_energy_multiplier = 0.75
+
+[sub_resource type="TextMesh" id="TextMesh_hkdkl"]
+material = SubResource("StandardMaterial3D_j8njj")
+text = "Party here"
+font = SubResource("SystemFont_fy0p5")
+depth = 0.01
+
+[sub_resource type="Resource" id="Resource_egudy"]
+script = ExtResource("8_j8njj")
+display_name = "Frosh"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_01clm"]
+script = ExtResource("8_j8njj")
+display_name = "Grenoi"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_gr5bc"]
+script = ExtResource("8_j8njj")
+display_name = "Mildred"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_b847t"]
+script = ExtResource("8_j8njj")
+display_name = "Benny"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_eg22t"]
+script = ExtResource("9_hkdkl")
+party_name = "Swamp House Rock"
+characters = Array[ExtResource("8_j8njj")]([SubResource("Resource_egudy"), SubResource("Resource_01clm"), SubResource("Resource_gr5bc"), SubResource("Resource_b847t")])
+location = Vector2i(-17, 6)
+explored = Array[Vector2i]([])
+metadata/_custom_type_script = "uid://b3uam1rlkdixt"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkdkl"]
+albedo_color = Color(0.210174, 0.802478, 0.7935, 1)
+emission_enabled = true
+emission = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_j8njj"]
+material = SubResource("StandardMaterial3D_hkdkl")
+size = Vector3(0.5, 0.75, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egudy"]
+albedo_color = Color(0.210174, 0.802478, 0.7935, 1)
+emission_enabled = true
+emission = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hkdkl"]
+material = SubResource("StandardMaterial3D_egudy")
+radius = 0.15
+height = 0.3
+
+[sub_resource type="FogMaterial" id="FogMaterial_j8njj"]
+density = -0.5
+
+[sub_resource type="SystemFont" id="SystemFont_hkdkl"]
+font_names = PackedStringArray("Z003")
+
+[node name="World" type="Node3D"]
+
+[node name="Grid" type="Node3D" parent="."]
+script = ExtResource("1_scc5w")
+data = SubResource("Resource_fy0p5")
+metadata/_custom_type_script = "uid://dr6ahwxcixptp"
+
+[node name="TimeWeather" type="Node3D" parent="." node_paths=PackedStringArray("time_label")]
+script = ExtResource("4_hkdkl")
+time_label = NodePath("../HBoxContainer/Time")
+date_time = SubResource("Resource_ldgie")
+
+[node name="DayCycle" type="AnimationPlayer" parent="TimeWeather"]
+root_node = NodePath("../DirectionalLight3D")
+libraries = {
+&"": SubResource("AnimationLibrary_scc5w")
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TimeWeather"]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
+shadow_enabled = true
+script = ExtResource("5_scc5w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="TimeWeather"]
+environment = SubResource("Environment_b56k5")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.540242, 0.84151, 0, -0.84151, 0.540242, 0, 0, 0)
+script = ExtResource("4_asog6")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 7.62939e-06, -63.3049, 351.713)
+
+[node name="Party" type="MeshInstance3D" parent="." node_paths=PackedStringArray("time_system")]
+transform = Transform3D(75, 0, 0, 0, 75, 0, 0, 0, 75, 0, 181.133, 0)
+mesh = SubResource("TextMesh_hkdkl")
+script = ExtResource("7_scc5w")
+data = SubResource("Resource_eg22t")
+time_system = NodePath("../TimeWeather")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Party"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -1.32111, 0)
+mesh = SubResource("PrismMesh_j8njj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Party/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.42109e-14, 0, 1.42109e-14, 1, 0, -0.676122, 5.91085e-08)
+mesh = SubResource("SphereMesh_hkdkl")
+
+[node name="FogVolume" type="FogVolume" parent="Party"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.877083, 0)
+size = Vector3(5, 3, 5)
+shape = 2
+material = SubResource("FogMaterial_j8njj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Time" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_hkdkl")
+theme_override_font_sizes/font_size = 50
+text = "999"

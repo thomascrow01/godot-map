@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw8mchak7flrr"]
+
+[ext_resource type="Script" uid="uid://fubh6j8dcecv" path="res://scripts/hex_tile.gd" id="1_xon6g"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_asog6"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_asog6"]
+density = 8.0
+emission = Color(0.758191, 0.758192, 0.758191, 1)
+density_texture = SubResource("NoiseTexture3D_asog6")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xon6g"]
+
+[node name="HexTile" type="Node3D"]
+script = ExtResource("1_xon6g")
+metadata/_custom_type_script = "uid://fubh6j8dcecv"
+
+[node name="FogVolume" type="FogVolume" parent="."]
+size = Vector3(1, 1, 1)
+shape = 2
+material = SubResource("FogMaterial_asog6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_xon6g")
