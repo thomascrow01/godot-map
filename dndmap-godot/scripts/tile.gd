@@ -3,6 +3,7 @@ class_name Tile extends Node3D
 # file created: 10-07-2025
 # last edited: 10-07-2025
 
+const placeholder_sprite: Texture2D = preload("res://icon.svg")
 @export var characters: Array[Character]
 
 @onready var fog: FogVolume = get_node_or_null("FogVolume") # fog used for fog of war
@@ -10,6 +11,10 @@ class_name Tile extends Node3D
 @onready var collider: CollisionObject3D = get_node_or_null("MouseCollision")
 @onready var screen_notifier: VisibleOnScreenNotifier3D = get_node_or_null("ScreenNotifier")
 var collision: CollisionShape3D
+
+@onready var sprite: Sprite2D = get_node_or_null("Sprite2D")
+@onready var collider_2d: CollisionShape2D = get_node_or_null("CollisionShape2D")
+@onready var screen_notifier_2d: VisibleOnScreenNotifier2D = get_node_or_null("VisibleOnScreenNotifier2D")
 
 @export var terrain: Array[String] ## Used for deciding how tough it is to travel
 @export var has_road: bool = false ## if the tile has a road or not
@@ -32,6 +37,17 @@ func _ready() -> void:
 		screen_notifier.screen_exited.connect(_unload_visuals)
 		screen_notifier.aabb.size.x = 256.0
 		screen_notifier.aabb.size.z = 256.0
+	
+	if !sprite:
+		sprite = Sprite2D.new()
+		add_child(sprite)
+		sprite.position = Vector2(  float(tile_resource.location.x) * 128.0 , float(tile_resource.location.y) * 128.0 )
+	
+	if !screen_notifier_2d:
+		screen_notifier_2d = VisibleOnScreenNotifier2D.new()
+		sprite.add_child(screen_notifier_2d)
+		screen_notifier_2d.screen_entered.connect(_load_visuals_2d)
+		
 	
 	if tile_resource and tile_resource.location:
 		position = Vector3( float(tile_resource.location.x) * 128.0 ,0.0, float(tile_resource.location.y) * 128.0)
@@ -60,6 +76,8 @@ func _ready() -> void:
 				#_:
 					#enviroment.mesh.material.albedo_color = Color(1.0,1.0,1.0,1.0)
 
+
+
 	if !collider:
 		collider = Area3D.new()
 		add_child(collider)
@@ -73,11 +91,17 @@ func _ready() -> void:
 		box_shape.size.x = 128.0
 		box_shape.size.z = 128.0
 		collision.shape = box_shape
+		
+	if !collider_2d:
+		collider_2d = CollisionShape2D.new()
+		sprite.add_child(collider_2d)
+		# TODO look at methods and such from this
+		
+	
 
 			
 	# TODO signal for mouse_entered, mouse_exited and input_event from collider
 	collider.mouse_entered.connect(mouse_entered)
-
 	fog.visible = !explored
 
 func explore(val: bool) -> void:
@@ -113,6 +137,18 @@ func _load_visuals() -> void:
 		
 func _load_mesh() -> void:
 	enviroment.mesh = load(tile_resource.enviroment_link)
+	
+func _load_visuals_2d() -> void:
+	if sprite:
+		_load_sprite()
+		
+func _load_sprite() -> void:
+	print(tile_resource.map_link)
+	if tile_resource.map_link:
+		sprite.texture = load(tile_resource.map_link)
+	else:
+		#sprite.texture = placeholder_sprite
+		pass
 
 func mouse_entered() -> void:
 	

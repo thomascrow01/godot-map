@@ -15,6 +15,7 @@ func _ready() -> void:
 		#global_position = Vector3(location.global_position.x, 0.0, location.global_position.z)
 		global_position = Vector3(128.0 * float(data.location.x), global_position.y, 128.0 * float(data.location.y))
 	get_owner().get_node("CameraPivot").global_position = global_position
+	get_owner().get_node("CameraPivot").cam2d.global_position = Vector2(data.location) * 128.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

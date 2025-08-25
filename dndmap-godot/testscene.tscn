@@ -15,7 +15,7 @@
 [sub_resource type="Resource" id="Resource_fy0p5"]
 script = ExtResource("2_b56k5")
 x_range_lower = -25
-x_range_upper = 0
+x_range_upper = 1
 y_range_lower = 0
 y_range_upper = 25
 tiles = Dictionary[Vector2i, ExtResource("3_scc5w")]({})
@@ -289,7 +289,7 @@ metadata/_custom_type_script = "uid://dr6ahwxcixptp"
 
 [node name="TimeWeather" type="Node3D" parent="." node_paths=PackedStringArray("time_label")]
 script = ExtResource("4_hkdkl")
-time_label = NodePath("../HBoxContainer/Time")
+time_label = NodePath("../UI/HBoxContainer/Time")
 date_time = SubResource("Resource_ldgie")
 
 [node name="DayCycle" type="AnimationPlayer" parent="TimeWeather"]
@@ -313,6 +313,9 @@ script = ExtResource("4_asog6")
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 7.62939e-06, -63.3049, 351.713)
 
+[node name="Camera2D" type="Camera2D" parent="CameraPivot"]
+anchor_mode = 0
+
 [node name="Party" type="MeshInstance3D" parent="." node_paths=PackedStringArray("time_system")]
 transform = Transform3D(75, 0, 0, 0, 75, 0, 0, 0, 75, 0, 181.133, 0)
 mesh = SubResource("TextMesh_hkdkl")
@@ -334,15 +337,19 @@ size = Vector3(5, 3, 5)
 shape = 2
 material = SubResource("FogMaterial_j8njj")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -51.0
+offset_right = 66.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Time" type="Label" parent="HBoxContainer"]
+[node name="Time" type="Label" parent="UI/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_hkdkl")
 theme_override_font_sizes/font_size = 50

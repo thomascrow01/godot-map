@@ -6,6 +6,7 @@ class_name TileResource extends Resource
 @export var fog_material: FogMaterial
 @export var terrain: Array[String]
 @export var enviroment_link: String
+@export var map_link: String
 @export var has_road: bool
 
 var location: Vector2i

@@ -22,8 +22,11 @@ func _ready() -> void:
 					var new_resource: TileResource
 					
 					new_resource = TileResource.new()
-					if FileAccess.file_exists("res://assets/models/minecraft_world_of_regions/" + str(x) + "_" + str(y) + ".obj"):
+					if ResourceLoader.exists("res://assets/models/minecraft_world_of_regions/" + str(x) + "_" + str(y) + ".obj"):
 						new_resource.enviroment_link = "res://assets/models/minecraft_world_of_regions/" + str(x) + "_" + str(y) + ".obj"
+
+					if ResourceLoader.exists("res://assets/sprites/minecraft_world_of_regions/" + str(x) + "_" + str(y) + ".png"):
+						new_resource.map_link = "res://assets/sprites/minecraft_world_of_regions/" + str(x) + "_" + str(y) + ".png"
 					
 					new_resource.location = Vector2i(x,y)
 					tiles[Vector2i(x,y)] = Tile.new(new_resource)
