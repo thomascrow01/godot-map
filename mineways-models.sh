@@ -6,7 +6,7 @@ for ((x = $1; x <= $2; x++)); do
 
     for ((y = $3; y <= $4; y++)); do
 
-        echo -e "Selection location: $((x * 128)), 0, $((y * 128)) to $((128 + x * 128)), 255, $((128 + y * 128))\nSelect minimum height: 0\nExport for Rendering: export/$((x))_$((y)).obj" >> temporary.mwscript
+        echo -e "Selection location: $((x * 128)), 0, $((y * 128)) to $((128 + x * 128)), 255, $((128 + y * 128))\nSelect minimum height: 0\nExport for Rendering: export/$((x))_$((y)).obj\nExport map: export/sprites/$((x))_$((y)).png" >> temporary.mwscript
 #Select minimum height: V # this doesnt work with the center model as the heights will not allign
         
     done

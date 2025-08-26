@@ -13,7 +13,7 @@ const placeholder_sprite: Texture2D = preload("res://icon.svg")
 var collision: CollisionShape3D
 
 @onready var sprite: Sprite2D = get_node_or_null("Sprite2D")
-@onready var collider_2d: CollisionShape2D = get_node_or_null("CollisionShape2D")
+@onready var collider_2d: CollisionObject2D = get_node_or_null("Area2D")
 @onready var screen_notifier_2d: VisibleOnScreenNotifier2D = get_node_or_null("VisibleOnScreenNotifier2D")
 
 @export var terrain: Array[String] ## Used for deciding how tough it is to travel
@@ -47,6 +47,7 @@ func _ready() -> void:
 		screen_notifier_2d = VisibleOnScreenNotifier2D.new()
 		sprite.add_child(screen_notifier_2d)
 		screen_notifier_2d.screen_entered.connect(_load_visuals_2d)
+		screen_notifier_2d.screen_exited.connect(_unload_sprite)
 		
 	
 	if tile_resource and tile_resource.location:
@@ -93,15 +94,20 @@ func _ready() -> void:
 		collision.shape = box_shape
 		
 	if !collider_2d:
-		collider_2d = CollisionShape2D.new()
-		sprite.add_child(collider_2d)
-		# TODO look at methods and such from this
 		
+		collider_2d = Area2D.new()
+		sprite.add_child(collider_2d)
+		
+		var collision_2d = CollisionShape2D.new()
+		collider_2d.add_child(collision_2d)
+		collision_2d.shape = RectangleShape2D.new()
+		collision_2d.shape.size = Vector2(128.0,128.0)
 	
 
 			
 	# TODO signal for mouse_entered, mouse_exited and input_event from collider
 	collider.mouse_entered.connect(mouse_entered)
+	collider_2d.mouse_entered.connect(mouse_entered)
 	fog.visible = !explored
 
 func explore(val: bool) -> void:
@@ -121,6 +127,7 @@ func _load_visuals() -> void:
 	if !enviroment:
 		if !tile_resource or !tile_resource.enviroment_link:
 			enviroment = preload("res://scenes/enviroment_prefabs/square_ground.tscn").instantiate()
+			tile_resource.enviroment_link = "res://scenes/enviroment_prefabs/square_ground.tres"
 		elif tile_resource and tile_resource.enviroment_link:
 			enviroment = MeshInstance3D.new()
 			
@@ -136,18 +143,26 @@ func _load_visuals() -> void:
 		_load_mesh()
 		
 func _load_mesh() -> void:
-	enviroment.mesh = load(tile_resource.enviroment_link)
+	if tile_resource.enviroment_link:
+		enviroment.mesh = load(tile_resource.enviroment_link)
+	else:
+		pass
 	
 func _load_visuals_2d() -> void:
 	if sprite:
 		_load_sprite()
+	else:
+		sprite.texture = placeholder_sprite
+		
+func _unload_sprite() -> void:
+	sprite.texture = null
 		
 func _load_sprite() -> void:
-	print(tile_resource.map_link)
+	#print(tile_resource.map_link)
 	if tile_resource.map_link:
 		sprite.texture = load(tile_resource.map_link)
 	else:
-		#sprite.texture = placeholder_sprite
+		sprite.texture = placeholder_sprite
 		pass
 
 func mouse_entered() -> void:

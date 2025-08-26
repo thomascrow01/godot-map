@@ -1,0 +1,11 @@
+[gd_resource type="BoxMesh" load_steps=3 format=3 uid="uid://cowai8g8wy81f"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_se24r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iop3c"]
+albedo_color = Color(0, 0, 0, 1)
+normal_texture = SubResource("PlaceholderTexture2D_se24r")
+
+[resource]
+material = SubResource("StandardMaterial3D_iop3c")
+size = Vector3(128, 32, 128)

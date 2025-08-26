@@ -22,6 +22,78 @@ tiles = Dictionary[Vector2i, ExtResource("3_scc5w")]({})
 default_terrain = ""
 metadata/_custom_type_script = "uid://bh7hqt12wv1lm"
 
+[sub_resource type="SystemFont" id="SystemFont_fy0p5"]
+font_names = PackedStringArray("OpenDyslexic", "Ubuntu", "Sans-Serif")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8njj"]
+emission_enabled = true
+emission = Color(0.529879, 0.982205, 0, 1)
+emission_energy_multiplier = 0.75
+
+[sub_resource type="TextMesh" id="TextMesh_hkdkl"]
+material = SubResource("StandardMaterial3D_j8njj")
+text = "Party here"
+font = SubResource("SystemFont_fy0p5")
+depth = 0.01
+
+[sub_resource type="Resource" id="Resource_egudy"]
+script = ExtResource("8_j8njj")
+display_name = "Frosh"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_01clm"]
+script = ExtResource("8_j8njj")
+display_name = "Grenoi"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_gr5bc"]
+script = ExtResource("8_j8njj")
+display_name = "Mildred"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_b847t"]
+script = ExtResource("8_j8njj")
+display_name = "Benny"
+icon_link = ""
+model_link = ""
+metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
+
+[sub_resource type="Resource" id="Resource_eg22t"]
+script = ExtResource("9_hkdkl")
+party_name = "Swamp House Rock"
+characters = Array[ExtResource("8_j8njj")]([SubResource("Resource_egudy"), SubResource("Resource_01clm"), SubResource("Resource_gr5bc"), SubResource("Resource_b847t")])
+location = Vector2i(-17, 6)
+explored = Array[Vector2i]([])
+metadata/_custom_type_script = "uid://b3uam1rlkdixt"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkdkl"]
+albedo_color = Color(0.210174, 0.802478, 0.7935, 1)
+emission_enabled = true
+emission = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_j8njj"]
+material = SubResource("StandardMaterial3D_hkdkl")
+size = Vector3(0.5, 0.75, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egudy"]
+albedo_color = Color(0.210174, 0.802478, 0.7935, 1)
+emission_enabled = true
+emission = Color(0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hkdkl"]
+material = SubResource("StandardMaterial3D_egudy")
+radius = 0.15
+height = 0.3
+
+[sub_resource type="FogMaterial" id="FogMaterial_j8njj"]
+density = -0.5
+
 [sub_resource type="Resource" id="Resource_ldgie"]
 script = ExtResource("5_egudy")
 seconds = 0
@@ -205,78 +277,6 @@ volumetric_fog_density = 0.0
 volumetric_fog_length = 2048.0
 volumetric_fog_temporal_reprojection_enabled = false
 
-[sub_resource type="SystemFont" id="SystemFont_fy0p5"]
-font_names = PackedStringArray("OpenDyslexic", "Ubuntu", "Sans-Serif")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8njj"]
-emission_enabled = true
-emission = Color(0.529879, 0.982205, 0, 1)
-emission_energy_multiplier = 0.75
-
-[sub_resource type="TextMesh" id="TextMesh_hkdkl"]
-material = SubResource("StandardMaterial3D_j8njj")
-text = "Party here"
-font = SubResource("SystemFont_fy0p5")
-depth = 0.01
-
-[sub_resource type="Resource" id="Resource_egudy"]
-script = ExtResource("8_j8njj")
-display_name = "Frosh"
-icon_link = ""
-model_link = ""
-metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
-
-[sub_resource type="Resource" id="Resource_01clm"]
-script = ExtResource("8_j8njj")
-display_name = "Grenoi"
-icon_link = ""
-model_link = ""
-metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
-
-[sub_resource type="Resource" id="Resource_gr5bc"]
-script = ExtResource("8_j8njj")
-display_name = "Mildred"
-icon_link = ""
-model_link = ""
-metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
-
-[sub_resource type="Resource" id="Resource_b847t"]
-script = ExtResource("8_j8njj")
-display_name = "Benny"
-icon_link = ""
-model_link = ""
-metadata/_custom_type_script = "uid://bm73rxjfk5nmm"
-
-[sub_resource type="Resource" id="Resource_eg22t"]
-script = ExtResource("9_hkdkl")
-party_name = "Swamp House Rock"
-characters = Array[ExtResource("8_j8njj")]([SubResource("Resource_egudy"), SubResource("Resource_01clm"), SubResource("Resource_gr5bc"), SubResource("Resource_b847t")])
-location = Vector2i(-17, 6)
-explored = Array[Vector2i]([])
-metadata/_custom_type_script = "uid://b3uam1rlkdixt"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkdkl"]
-albedo_color = Color(0.210174, 0.802478, 0.7935, 1)
-emission_enabled = true
-emission = Color(0.266575, 0.266575, 0.266575, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_j8njj"]
-material = SubResource("StandardMaterial3D_hkdkl")
-size = Vector3(0.5, 0.75, 0.25)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egudy"]
-albedo_color = Color(0.210174, 0.802478, 0.7935, 1)
-emission_enabled = true
-emission = Color(0.266575, 0.266575, 0.266575, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_hkdkl"]
-material = SubResource("StandardMaterial3D_egudy")
-radius = 0.15
-height = 0.3
-
-[sub_resource type="FogMaterial" id="FogMaterial_j8njj"]
-density = -0.5
-
 [sub_resource type="SystemFont" id="SystemFont_hkdkl"]
 font_names = PackedStringArray("Z003")
 
@@ -287,34 +287,16 @@ script = ExtResource("1_scc5w")
 data = SubResource("Resource_fy0p5")
 metadata/_custom_type_script = "uid://dr6ahwxcixptp"
 
-[node name="TimeWeather" type="Node3D" parent="." node_paths=PackedStringArray("time_label")]
-script = ExtResource("4_hkdkl")
-time_label = NodePath("../UI/HBoxContainer/Time")
-date_time = SubResource("Resource_ldgie")
-
-[node name="DayCycle" type="AnimationPlayer" parent="TimeWeather"]
-root_node = NodePath("../DirectionalLight3D")
-libraries = {
-&"": SubResource("AnimationLibrary_scc5w")
-}
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TimeWeather"]
-transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
-shadow_enabled = true
-script = ExtResource("5_scc5w")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="TimeWeather"]
-environment = SubResource("Environment_b56k5")
-
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.540242, 0.84151, 0, -0.84151, 0.540242, 0, 0, 0)
 script = ExtResource("4_asog6")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 7.62939e-06, -63.3049, 351.713)
+current = true
 
 [node name="Camera2D" type="Camera2D" parent="CameraPivot"]
-anchor_mode = 0
+enabled = false
 
 [node name="Party" type="MeshInstance3D" parent="." node_paths=PackedStringArray("time_system")]
 transform = Transform3D(75, 0, 0, 0, 75, 0, 0, 0, 75, 0, 181.133, 0)
@@ -336,6 +318,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.877083, 0)
 size = Vector3(5, 3, 5)
 shape = 2
 material = SubResource("FogMaterial_j8njj")
+
+[node name="TimeWeather" type="Node3D" parent="." node_paths=PackedStringArray("time_label")]
+script = ExtResource("4_hkdkl")
+time_label = NodePath("../UI/HBoxContainer/Time")
+date_time = SubResource("Resource_ldgie")
+
+[node name="DayCycle" type="AnimationPlayer" parent="TimeWeather"]
+root_node = NodePath("../DirectionalLight3D")
+libraries = {
+&"": SubResource("AnimationLibrary_scc5w")
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TimeWeather"]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 0, 0, 0)
+shadow_enabled = true
+script = ExtResource("5_scc5w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="TimeWeather"]
+environment = SubResource("Environment_b56k5")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

@@ -1,14 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2pnhcsk3j8r4"]
+[gd_scene load_steps=2 format=3 uid="uid://c2pnhcsk3j8r4"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_se24r"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iop3c"]
-albedo_color = Color(0, 0, 0, 1)
-normal_texture = SubResource("PlaceholderTexture2D_se24r")
-
-[sub_resource type="BoxMesh" id="BoxMesh_j8njj"]
-material = SubResource("StandardMaterial3D_iop3c")
-size = Vector3(128, 32, 128)
+[ext_resource type="BoxMesh" uid="uid://cowai8g8wy81f" path="res://scenes/enviroment_prefabs/square_ground.tres" id="1_iop3c"]
 
 [node name="SquareGround" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_j8njj")
+mesh = ExtResource("1_iop3c")
